@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商品信息</title>
+    <!--根据自己的项目目录修改-->
+    <link rel="stylesheet" href="layui/css/layui.css" media="all"/>
+</head>
+<body>
+<table id="goods_table" lay-filter="goods_bar"></table>
+<div class="layui-row" id="open_div" style="display:none;">
+    <form id="add_form" class="layui-form" action="" style="margin-top: 20px;align:center;">
+        <!--隐藏字段action，用来区分增加和编辑行为-->
+        <input type="hidden" name="action" id="action">
+        <!--隐藏字段id，用于提供编辑需要的主键-->
+        <input type="hidden" name="id" id="id">
+        <!--隐藏字段request_type，用于提供请求方式:get,post,put-->
+        <input type="hidden" name="request_type" id="request_type">
+
+        <div class="layui-form-item" style="display: table;width: 96%">
+            <div class="layui-form-item" style="display: table-cell;width: 50%">
+                <label class="layui-form-label">类&emsp;&emsp;型</label>
+                <div class="layui-input-block">
+                    <select id="" name="type" lay-filter="type" lay-verify="required">
+                        <option value="">请选择</option>
+                        <option value="国产">国产</option>
+                        <option value="进口">进口</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item" style="display: table-cell;width: 50%">
+                <label class="layui-form-label">产品名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="name" placeholder="请输入产品名称"
+                           autocomplete="off" class="layui-input" lay-verify="required">
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item" style="display: table;width: 96%">
+            <div class="layui-form-item" style="display: table-cell;width: 50%">
+                <label class="layui-form-label">价&emsp;&emsp;格</label>
+                <div class="layui-input-block">
+                    <input type="text" name="price" placeholder="请输入价格"
+                           autocomplete="off" class="layui-input" lay-verify="required">
+                </div>
+            </div>
+            <div class="layui-form-item" style="display: table-cell;width: 50%">
+                <label class="layui-form-label">数&emsp;&emsp;量</label>
+                <div class="layui-input-block">
+                    <input type="text" name="size" placeholder="请输入数量"
+                           autocomplete="off" class="layui-input" lay-verify="required">
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item" style="width: 96%">
+            <label class="layui-form-label">说&emsp;&emsp;明</label>
+            <div class="layui-input-block">
+                <input type="text" name="description" placeholder="请输入产品说明"
+                       autocomplete="off" class="layui-input" lay-verify="required">
+            </div>
+        </div>
+
+        <div class="layui-form-item" style="margin-left: 40%">
+            <div class="layui-btn-group">
+                <button class="layui-btn" lay-submit="" lay-filter="update_submit">提&ensp;交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重&ensp;置</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="layui/layui.js"></script>
+<script src="js/libs/jquery-2.1.1.min.js"></script>
+<script src="utils/common.js"></script>
+
+<!--头部工具按钮-->
+<script type="text/html" id="goods_headerBar">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="add">
+            <i class="layui-icon">&#xe608;</i> 新&emsp;增
+        </button>
+        <button class="layui-btn layui-btn-normal layui-btn-sm" lay-event="refresh" style=" margin-left: 15px">
+            <i class="layui-icon">&#xe669;</i> 刷&emsp;新
+        </button>
+    </div>
+</script>
+
+<!--行工具按钮-->
+<script type="text/html" id="goods_lineBar">
+    <a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
+</script>
+
+<script>
+    layui.use(['table', 'layer', 'form', 'laypage'], function () {
+        var table = layui.table;
+        var form = layui.form;
+
+        table.render({
+            elem: '#goods_table'
+            , id: 'goodsReload'
+            , even: true //开启隔行背景
+            , url: '/goods/goodsList'
+            , request: {
+                pageName: 'pageNum',
+                limitName: 'pageSize'
+            }
+            , toolbar: '#goods_headerBar'
+            , title:
+                '商品详情表'
+            , page:
+                true //开启分页
+            , limit: 5
+            , limits: [1, 5, 10, 20, 50, 100]
+            , cols:
+                [[{field: 'id', title: '编号', width: 60, align: 'center'}
+                    , {field: 'type', title: '类&emsp;型', width: 76, align: 'center'}
+                    , {field: 'name', title: '商品名称', width: '8.5%', align: 'center'}
+                    , {field: 'price', title: '价&emsp;格', width: '9.1%', align: 'center'}
+                    , {field: 'size', title: '数&emsp;量', width: '9.5%', align: 'center'}
+                    , {field: 'status', title: '状&emsp;态', width: '7.5%', align: 'center'}
+                    , {field: 'description', title: '说&emsp;明', align: 'center'}
+                    , {
+                        fixed: 'right',
+                        title: '操作',
+                        toolbar: '#goods_lineBar',
+                        width: 160,
+                        align: 'center'
+                    }
+                ]]
+        });
+
+        // 监听头部工具栏
+        table.on('toolbar(goods_bar)', function (obj) {
+            switch (obj.event) {
+                // 根据增加行为给form隐藏项赋值
+                case 'add':
+                    var data = {};
+                    data.action = 'addGood';
+                    data.request_type = 'post';
+
+                    // 调用打开弹层的工具方法
+                    open_form("#open_div", data, '添加商品', '620px', '282px');
+                    break;
+                case 'refresh':
+                    // 执行一个表格重载即实现刷新功能
+                    table.reload('goodsReload', {
+                        where: '',
+                        contentType: 'application/x-www-form-urlencoded',
+                        page: {
+                            curr: 1 //重新从第 1 页开始
+                        },
+                        url: '/goods/goodsList',
+                        method: 'get'
+                    });
+                    break;
+            }
+        });
+
+        table.on('tool(goods_bar)', function (obj) {
+            var data = obj.data;
+            var layEvent = obj.event;
+            var id = data.id;
+
+            switch (layEvent) {
+                case 'edit':
+                    // 根据编辑行为为form隐藏项赋值
+                    data.action = 'updateGood';
+                    data.request_type = 'post';
+                    open_form("#open_div", data, '编辑用例', '620px', '282px');
+                    break;
+                case 'del':
+                    layer.confirm('真的删除该行么', function (index) {
+                        obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+                        //向服务端发送删除指令
+                        $.ajax({
+                            type: "get",  //数据提交方式(post/get)
+                            url: "/goods/deleteGood?id=" + id,  //提交到的url
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",//返回的数据类型格式
+                            success: function (result) {
+                                layer.msg(result.msg, {icon: 1, time: 1000});
+                            }, error: function (e) {
+                                console.log(e, 'error');
+                                layer.msg("查询商品异常，请联系管理员！", {icon: 1, time: 1000});
+                            }
+                        });
+                        layer.close(index);
+                    });
+                    break;
+            }
+        });
+
+        form.on('submit(update_submit)', function (data) {
+            var uri = data.field.action;
+            var type = data.field.request_type;
+            console.log(data);
+            $.ajax({
+                type: type,
+                url: '/goods/' + uri,
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(data.field),
+                dataType: "json",
+                success: function (result) {
+                    if (result.code == "0") {
+                        table.reload('goodsReload', {
+                            contentType: 'application/x-www-form-urlencoded',
+                            page: {
+                                curr: 1 //重新从第 1 页开始
+                            },
+                            url: '/goods/goodsList',
+                            method: 'get'
+                        });
+                        layer.msg('修改成功', {icon: 1, time: 1000});
+                    } else {  //失败
+                        layer.alert(result.msg, {icon: 2}, function () {
+                            layer.close(index);
+                        });
+                    }
+                }
+            });
+            layer.close(index);//关闭弹出层
+            return false;
+        });
+    });
+</script>
+</body>
+</html>
