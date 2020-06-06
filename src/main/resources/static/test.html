@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试页面</title>
+    <link rel="stylesheet" href="layui/css/layui.css" media="all"/>
+</head>
+<body>
+<div>
+    <table id="test_table" lay-filter="test_bar"></table>
+</div>
+
+<script src="layui/layui.js"></script>
+<script src="js/libs/jquery-2.1.1.min.js"></script>
+<script src="utils/common.js"></script>
+
+<!--行工具按钮-->
+<script type="text/html" id="test_lineBar">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
+</script>
+
+<script type="text/html" id="status">
+    {{#  if(d.status==1){ }}
+    <input type="checkbox" name="status" lay-skin="switch" checked lay-text="正常|禁售" value={{ d.status }}
+           lay-filter="status">
+    {{#  } else { }}
+    <input type="checkbox" name="status" lay-skin="switch" lay-text="正常|禁售" value={{ d.status}}
+           lay-filter="status">
+    {{#  } }}
+</script>
+
+<script>
+    layui.extend({optimizeSelectOption: 'layui/plugin/optimizeSelectOption/optimizeSelectOption'})
+        .use(['table', 'layer', 'form', 'optimizeSelectOption'], function () {
+            var table = layui.table
+                , layer = layui.layer //弹层
+                , form = layui.form;
+
+            var fn1 = function (field) {
+                return function (data) {
+                    var value = data[field];
+                    return [
+                        '<select name="type" lay-filter="type" lay-search="true" value="' + value + '">',
+                        '<option value="" >请选择状态</option>',
+                        '<option value="国产"' + (value === 0 ? 'selected' : '') + '>国产</option>',
+                        '<option value="进口"' + (value === 1 ? 'selected' : '') + '>进口</option>',
+                        '</select>'
+                    ].join('');
+                };
+            };
+
+            var data = [
+                {
+                    "id": 1,
+                    "name": "iPhone",
+                    "type": 0,
+                    "price": 6000.0,
+                    "size": 55,
+                    "status": 0,
+                    "description": "说明"
+                },
+                {
+                    "id": 2,
+                    "name": "watch",
+                    "type": 1,
+                    "price": 500.0,
+                    "size": 35,
+                    "status": 1,
+                    "description": "说明"
+                },
+                {
+                    "id": 3,
+                    "name": "television",
+                    "type": 1,
+                    "price": 1000.0,
+                    "size": 90,
+                    "status": 1,
+                    "description": "说明"
+                },
+                {
+                    "id": 4,
+                    "name": "computer",
+                    "type": 1,
+                    "price": 4500.0,
+                    "size": 60,
+                    "status": 1,
+                    "description": "说明"
+                }
+            ];
+
+            table.render({
+                elem: '#test_table'
+                , id: 'testReload'
+                , even: true //开启隔行背景
+                , data: data
+                , size: 'lg'
+                , title:
+                    '商品详情表'
+                , cols:
+                    [[{field: 'id', title: '编号', width: 60, align: 'center'}
+                        , {field: 'type', title: '类&emsp;型', width: 150, align: 'center', templet: fn1('type')}
+                        , {field: 'name', title: '商品名称', width: '12%', align: 'center'}
+                        , {field: 'price', title: '价&emsp;格', width: '9.1%', align: 'center'}
+                        , {field: 'size', title: '数&emsp;量', width: '9.5%', align: 'center'}
+                        , {field: 'status', title: '状&emsp;态', width: 120, align: 'center', templet: '#status'}
+                        , {field: 'description', title: '说&emsp;明', align: 'center'}
+                        , {
+                            fixed: 'right',
+                            title: '操作',
+                            toolbar: '#test_lineBar',
+                            width: 120,
+                            align: 'center'
+                        }
+                    ]]
+            });
+
+            table.on('tool(test_bar)', function (obj) {
+                var data = obj.data;
+                var layEvent = obj.event;
+
+                switch (layEvent) {
+                    case 'edit':
+                        layer.alert(JSON.stringify(data));
+                        break;
+                }
+            });
+
+            // 监听开关事件
+            form.on('switch(status)', function (data) {
+                var status = this.checked ? 1 : 0;
+                console.log("status->>>>>>>>>>>>>>", status);
+                console.log("data->>>>>>>>>>>>>>", data);
+                modifyTableCacheBySwitch(data, status);
+            });
+
+            function modifyTableCacheBySwitch(data, status) {
+                var table = layui.table;
+                var switchElem = $(data.elem);
+                var tdElem = switchElem.closest('td');
+                var trElem = tdElem.closest('tr');
+                var tableView = trElem.closest('.layui-table-view');
+                table.cache[tableView.attr('lay-id')][trElem.data('index')][tdElem.data('field')] = status;
+            }
+        });
+</script>
+
+</body>
+</html>
