@@ -60,18 +60,21 @@
             <div class="layui-form-item" style="display: table-cell;width: 50%">
                 <label class="layui-form-label">类&emsp;&emsp;型</label>
                 <div class="layui-input-block">
-                    <select id="" name="type" lay-filter="type" lay-verify="required">
+                    <select name="type" lay-filter="type" lay-verify="required">
                         <option value="">请选择</option>
-                        <option value="国产">国产</option>
-                        <option value="进口">进口</option>
+                        <option value="1">国产</option>
+                        <option value="2">进口</option>
                     </select>
                 </div>
             </div>
             <div class="layui-form-item" style="display: table-cell;width: 50%">
-                <label class="layui-form-label">产品名称</label>
+                <label class="layui-form-label">状&emsp;&emsp;态</label>
                 <div class="layui-input-block">
-                    <input type="text" name="name" placeholder="请输入产品名称"
-                           autocomplete="off" class="layui-input" lay-verify="required">
+                    <select name="status" lay-filter="type" lay-verify="required">
+                        <option value="">请选择</option>
+                        <option value="0">缺货</option>
+                        <option value="1">有货</option>
+                    </select>
                 </div>
             </div>
         </div>
@@ -92,15 +95,22 @@
                 </div>
             </div>
         </div>
-
-        <div class="layui-form-item" style="width: 96%">
-            <label class="layui-form-label">说&emsp;&emsp;明</label>
-            <div class="layui-input-block">
-                <input type="text" name="description" placeholder="请输入产品说明"
-                       autocomplete="off" class="layui-input" lay-verify="required">
+        <div class="layui-form-item" style="display: table;width: 96%">
+            <div class="layui-form-item" style="display: table-cell;width: 50%">
+                <label class="layui-form-label">产品名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="name" placeholder="请输入产品名称"
+                           autocomplete="off" class="layui-input" lay-verify="required">
+                </div>
+            </div>
+            <div class="layui-form-item" style="display: table-cell;width: 50%">
+                <label class="layui-form-label">说&emsp;&emsp;明</label>
+                <div class="layui-input-block">
+                    <input type="text" name="description" placeholder="请输入产品说明"
+                           autocomplete="off" class="layui-input" lay-verify="required">
+                </div>
             </div>
         </div>
-
         <div class="layui-form-item" style="margin-left: 40%">
             <div class="layui-btn-group">
                 <button class="layui-btn" lay-submit="" lay-filter="update_submit">提&ensp;交</button>
@@ -195,7 +205,7 @@
             data.request_type = 'post';
 
             // 调用打开弹层的工具方法
-            open_form("#open_div", data, '添加商品', '620px', '282px');
+            open_form("#open_div", data, '添加商品', '680px', '282px');
         });
 
         table.on('tool(goods_bar)', function (obj) {
@@ -208,7 +218,7 @@
                     // 根据编辑行为为form隐藏项赋值
                     data.action = 'updateGood';
                     data.request_type = 'post';
-                    open_form("#open_div", data, '编辑用例', '620px', '282px');
+                    open_form("#open_div", data, '编辑用例', '680px', '282px');
                     break;
                 case 'del':
                     layer.confirm('真的删除该行么', function (index) {
@@ -267,7 +277,6 @@
         // 监听搜索按钮提交事件
         form.on('submit(search)', function (data) {
             var formData = data.field;
-            console.log("formData————————————>", formData);
             var count = checkForm("search_form");
             if (count !== 0) {
                 //数据表格重载
@@ -278,29 +287,6 @@
             return false;
         });
     });
-
-    function checkForm(formId) {
-        var form = document.getElementById(formId);
-        var count = 0;
-        for (var i = 0; i < form.elements.length - 1; i++) {
-            if (!form.elements[i].value == "") {
-                count++;
-            }
-        }
-        return count;
-    }
-
-    function tableReload(tableId, where, contentType, url, method) {
-        layui.table.reload(tableId, {
-            where: where,
-            contentType: contentType,
-            page: {
-                curr: 1 //重新从第 1 页开始
-            },
-            url: url
-            , method: method
-        });
-    }
 </script>
 </body>
 </html>

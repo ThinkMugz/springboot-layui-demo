@@ -28,6 +28,29 @@ function open_form(element, data, title, width, height) {
     });
 }
 
+function checkForm(formId) {
+    var form = document.getElementById(formId);
+    var count = 0;
+    for (var i = 0; i < form.elements.length - 1; i++) {
+        if (!form.elements[i].value == "") {
+            count++;
+        }
+    }
+    return count;
+}
+
+function tableReload(tableId, where, contentType, url, method) {
+    layui.table.reload(tableId, {
+        where: where,
+        contentType: contentType,
+        page: {
+            curr: 1 //重新从第 1 页开始
+        },
+        url: url
+        , method: method
+    });
+}
+
 $.fn.setForm = function (jsonValue) {
     var obj = this;
     $.each(jsonValue, function (name, ival) {

@@ -2,17 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb760f09-5473-4d01-b879-334cd69a6c9f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mappers/GoodsMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mudemo/MudemoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mudemo/MudemoApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mudemo/controller/GoodsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mudemo/controller/GoodsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mudemo/dao/GoodsMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mudemo/dao/GoodsDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mudemo/model/Good.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mudemo/model/Goods.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mudemo/service/GoodsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mudemo/service/GoodsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mudemo/service/impl/GoodsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mudemo/service/impl/GoodsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/mudemo/MudemoApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/mudemo2/MudemoApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/utils/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/utils/common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/mudemo/service/impl/GoodsServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mudemo/service/impl/GoodsServiceImpl.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,53 +82,73 @@
       <option name="presentableId" value="Default" />
       <updated>1612066260931</updated>
       <workItem from="1612066263223" duration="3725000" />
-      <workItem from="1612081976390" duration="2234000" />
+      <workItem from="1612081976390" duration="2841000" />
     </task>
+    <task id="LOCAL-00001" summary="增加搜索功能">
+      <created>1612084330117</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1612084330117</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="增加搜索功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加搜索功能" />
   </component>
   <component name="WindowStateProjectService">
     <state x="651" y="436" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1612081120907">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="651" y="436" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1612081120907" />
-    <state width="1877" height="261" key="GridCell.Tab.0.bottom" timestamp="1612084229973">
+    <state x="361" y="27" key="CommitChangelistDialog2" timestamp="1612084329314">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="261" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1612084229973" />
-    <state width="1877" height="261" key="GridCell.Tab.0.center" timestamp="1612084229973">
+    <state x="361" y="27" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1612084329314" />
+    <state width="1877" height="261" key="GridCell.Tab.0.bottom" timestamp="1612085044572">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="261" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1612084229973" />
-    <state width="1877" height="261" key="GridCell.Tab.0.left" timestamp="1612084229973">
+    <state width="1877" height="261" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1612085044572" />
+    <state width="1877" height="261" key="GridCell.Tab.0.center" timestamp="1612085044572">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="261" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1612084229973" />
-    <state width="1877" height="261" key="GridCell.Tab.0.right" timestamp="1612084229973">
+    <state width="1877" height="261" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1612085044572" />
+    <state width="1877" height="261" key="GridCell.Tab.0.left" timestamp="1612085044572">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="261" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1612084229973" />
-    <state width="1877" height="261" key="GridCell.Tab.1.bottom" timestamp="1612084229973">
+    <state width="1877" height="261" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1612085044572" />
+    <state width="1877" height="261" key="GridCell.Tab.0.right" timestamp="1612085044572">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="261" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1612084229973" />
-    <state width="1877" height="261" key="GridCell.Tab.1.center" timestamp="1612084229973">
+    <state width="1877" height="261" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1612085044572" />
+    <state width="1877" height="261" key="GridCell.Tab.1.bottom" timestamp="1612085044573">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="261" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1612084229973" />
-    <state width="1877" height="261" key="GridCell.Tab.1.left" timestamp="1612084229973">
+    <state width="1877" height="261" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1612085044573" />
+    <state width="1877" height="261" key="GridCell.Tab.1.center" timestamp="1612085044572">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="261" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1612084229973" />
-    <state width="1877" height="261" key="GridCell.Tab.1.right" timestamp="1612084229973">
+    <state width="1877" height="261" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1612085044572" />
+    <state width="1877" height="261" key="GridCell.Tab.1.left" timestamp="1612085044572">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="261" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1612084229973" />
+    <state width="1877" height="261" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1612085044572" />
+    <state width="1877" height="261" key="GridCell.Tab.1.right" timestamp="1612085044572">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="261" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1612085044572" />
     <state x="461" y="162" key="SettingsEditor" timestamp="1612066291555">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1612066291555" />
+    <state x="552" y="249" key="Vcs.Push.Dialog.v2" timestamp="1612084332469">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="249" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1612084332469" />
   </component>
 </project>
